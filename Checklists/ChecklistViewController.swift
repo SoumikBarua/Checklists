@@ -69,7 +69,16 @@ class ChecklistViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    // To swipe-delete rows
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        items.remove(at: indexPath.row)
+        
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        
+    }
     
+    // MARK:- Cell configuration
     // This checks for current rows checked status and updates accessory view accordingly
     func configureCheckmark(for cell: UITableViewCell, with item: ChecklistItem) {
         
@@ -88,6 +97,18 @@ class ChecklistViewController: UITableViewController {
         label.text = item.text
     }
     
-    
+    // MARK:- Actions
+    // This is the action-target function for the navigation bar add button
+    @IBAction func addItem() {
+        let newRowIndex = items.count // the newRowIndex will be the count of current items, last item index = count-1
+        
+        let item = ChecklistItem()
+        item.text = "I am a new row"
+        //item.checked = true
+        items.append(item)
+        
+        let indexPath = IndexPath(row: newRowIndex, section: 0)
+        tableView.insertRows(at: [indexPath], with: .automatic)
+    }
 }
 
