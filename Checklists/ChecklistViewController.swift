@@ -97,19 +97,6 @@ class ChecklistViewController: UITableViewController, AddItemTableViewController
         label.text = item.text
     }
     
-    // MARK:- Actions
-    // This is the action-target function for the navigation bar add button
-    @IBAction func addItem() {
-        let newRowIndex = items.count // the newRowIndex will be the count of current items, last item index = count-1
-        
-        let item = ChecklistItem()
-        item.text = "I am a new row"
-        //item.checked = true
-        items.append(item)
-        
-        let indexPath = IndexPath(row: newRowIndex, section: 0)
-        tableView.insertRows(at: [indexPath], with: .automatic)
-    }
     
     
     // MARK:- Add item table view delegate methods
@@ -118,7 +105,11 @@ class ChecklistViewController: UITableViewController, AddItemTableViewController
     }
     
     func addItemTableViewController(_ controller: AddItemTableViewController, didFinishAdding item: ChecklistItem) {
+        let newRowIndex = items.count
         items.append(item)
+        
+        let indexPath = IndexPath(row: newRowIndex, section: 0)
+        tableView.insertRows(at: [indexPath], with: .automatic)
         navigationController?.popViewController(animated: true)
     }
     
