@@ -16,14 +16,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="ChecklistItem" id="6bi-va-xDt">
-                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6bi-va-xDt" id="5MT-Vn-ofR">
-                                    <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gZn-R8-H8r">
-                                            <rect key="frame" x="16" y="11" width="311" height="21"/>
+                                            <rect key="frame" x="16" y="11" width="311" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -46,7 +46,7 @@
                     <navigationItem key="navigationItem" title="Checklists" id="jJf-pt-RYv">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="gnB-Nx-yqE">
                             <connections>
-                                <segue destination="7Q6-Rn-lXI" kind="show" id="uwh-Lg-icP"/>
+                                <segue destination="7Q6-Rn-lXI" kind="show" identifier="AddItem" id="uwh-Lg-icP"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -58,7 +58,6 @@
         <!--Add Item-->
         <scene sceneID="8Sh-vd-S5E">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0SQ-BI-zN5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tableViewController id="7Q6-Rn-lXI" customClass="AddItemTableViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="rUQ-xW-pnq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -117,8 +116,9 @@
                         <outlet property="textField" destination="87J-vf-2tp" id="UBi-eA-Ci8"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0SQ-BI-zN5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1521" y="143"/>
+            <point key="canvasLocation" x="1612" y="143"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gmD-dn-ZOg">

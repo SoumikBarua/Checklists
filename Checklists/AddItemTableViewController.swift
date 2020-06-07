@@ -8,10 +8,19 @@
 
 import UIKit
 
+protocol AddItemTableViewControllerDelegate: class {
+    
+    func addItemTableViewControllerDidCancel(_ controller: AddItemTableViewController)
+    
+    func addItemTableViewController(_ controller: AddItemTableViewController, didFinishAdding item: ChecklistItem)
+}
+
 class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
+    
+    weak var delegate: AddItemTableViewControllerDelegate?
     
     // MARK:- View life cycles
     override func viewDidLoad() {
@@ -40,12 +49,15 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     // MARK:- Actions
     // This will trigger going back to the main tableview without adding an item
     @IBAction func cancel() {
-        navigationController?.popViewController(animated: true)
+        delegate?.addItemTableViewControllerDidCancel(self)
     }
     
     // This will trigger going back to the main tableview after saving and addint to the item
     @IBAction func done() {
-        navigationController?.popViewController(animated: true)
+        let item = ChecklistItem()
+        item.text = textField.text!
+        
+        delegate?.addItemTableViewController(self, didFinishAdding: item)
     }
     
     // MARK:- Text field delegate methods
