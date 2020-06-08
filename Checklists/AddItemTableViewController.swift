@@ -19,6 +19,7 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
+    var itemToEdit: ChecklistItem?
     
     weak var delegate: AddItemTableViewControllerDelegate?
     
@@ -34,6 +35,11 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
         
         // Turn off large navigation bar title
         navigationItem.largeTitleDisplayMode = .never
+        
+        if let item = itemToEdit {
+            title = "Edit Item"
+            textField.text = item.text
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
