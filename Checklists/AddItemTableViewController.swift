@@ -13,6 +13,8 @@ protocol AddItemTableViewControllerDelegate: class {
     func addItemTableViewControllerDidCancel(_ controller: AddItemTableViewController)
     
     func addItemTableViewController(_ controller: AddItemTableViewController, didFinishAdding item: ChecklistItem)
+    
+    func addItemTableViewController(_ controller: AddItemTableViewController, didFinishEditing item: ChecklistItem)
 }
 
 class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
@@ -39,6 +41,7 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
         if let item = itemToEdit {
             title = "Edit Item"
             textField.text = item.text
+            doneBarButton.isEnabled = true
         }
     }
     
@@ -60,10 +63,16 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     
     // This will trigger going back to the main tableview after saving and addint to the item
     @IBAction func done() {
-        let item = ChecklistItem()
-        item.text = textField.text!
         
-        delegate?.addItemTableViewController(self, didFinishAdding: item)
+        if let item = itemToEdit {
+            item.text = textField.text!
+            delegate?.addItemTableViewController(self, didFinishEditing: item)
+        } else {
+            let item = ChecklistItem()
+            item.text = textField.text!
+        
+            delegate?.addItemTableViewController(self, didFinishAdding: item)
+        }
     }
     
     // MARK:- Text field delegate methods
