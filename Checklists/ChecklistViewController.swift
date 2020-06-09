@@ -67,6 +67,9 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        // Save the checkmark status
+        saveChecklistItems()
     }
     
     // To swipe-delete rows
@@ -76,6 +79,8 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
         
         tableView.deleteRows(at: [indexPath], with: .automatic)
         
+        // Remove the item from the file
+        saveChecklistItems()
     }
     
     // MARK:- Cell configuration
@@ -113,6 +118,9 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
         let indexPath = IndexPath(row: newRowIndex, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
         navigationController?.popViewController(animated: true)
+        
+        // Save the newly added item
+        saveChecklistItems()
     }
     
     func itemDetailViewController(_ controller: ItemDetailViewController, didFinishEditing item: ChecklistItem) {
@@ -123,6 +131,9 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
             }
         }
         navigationController?.popViewController(animated: true)
+        
+        // Save the edited item
+        saveChecklistItems()
     }
     
     // MARK:- Navigation
@@ -139,6 +150,26 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
             if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
                 controller.itemToEdit = items[indexPath.row]
             }
+        }
+    }
+    
+    // MARK:-  File operations
+    func documentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    func dataFilePath() -> URL {
+        return documentsDirectory().appendingPathComponent("Checklists.plist")
+    }
+    
+    func saveChecklistItems() {
+        let encoder = PropertyListEncoder()
+        do {
+            let data = try encoder.encode(items)
+            try data.write(to: dataFilePath(), options: Data.WritingOptions.atomic)
+        } catch {
+            print("Error encoding item array: \(error.localizedDescription)")
         }
     }
 }
