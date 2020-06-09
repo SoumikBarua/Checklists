@@ -8,22 +8,22 @@
 
 import UIKit
 
-protocol AddItemTableViewControllerDelegate: class {
+protocol ItemDetailViewControllerDelegate: class {
     
-    func addItemTableViewControllerDidCancel(_ controller: AddItemTableViewController)
+    func itemDetailViewControllerDidCancel(_ controller: ItemDetailViewController)
     
-    func addItemTableViewController(_ controller: AddItemTableViewController, didFinishAdding item: ChecklistItem)
+    func itemDetailViewController(_ controller: ItemDetailViewController, didFinishAdding item: ChecklistItem)
     
-    func addItemTableViewController(_ controller: AddItemTableViewController, didFinishEditing item: ChecklistItem)
+    func itemDetailViewController(_ controller: ItemDetailViewController, didFinishEditing item: ChecklistItem)
 }
 
-class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
+class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
     var itemToEdit: ChecklistItem?
     
-    weak var delegate: AddItemTableViewControllerDelegate?
+    weak var delegate: ItemDetailViewControllerDelegate?
     
     // MARK:- View life cycles
     override func viewDidLoad() {
@@ -58,7 +58,7 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     // MARK:- Actions
     // This will trigger going back to the main tableview without adding an item
     @IBAction func cancel() {
-        delegate?.addItemTableViewControllerDidCancel(self)
+        delegate?.itemDetailViewControllerDidCancel(self)
     }
     
     // This will trigger going back to the main tableview after saving and addint to the item
@@ -66,12 +66,12 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
         
         if let item = itemToEdit {
             item.text = textField.text!
-            delegate?.addItemTableViewController(self, didFinishEditing: item)
+            delegate?.itemDetailViewController(self, didFinishEditing: item)
         } else {
             let item = ChecklistItem()
             item.text = textField.text!
         
-            delegate?.addItemTableViewController(self, didFinishAdding: item)
+            delegate?.itemDetailViewController(self, didFinishAdding: item)
         }
     }
     
