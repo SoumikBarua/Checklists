@@ -19,7 +19,7 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
         // Load items
         loadChecklistItems()
         
-        navigationController?.navigationBar.prefersLargeTitles = true
+        //navigationController?.navigationBar.prefersLargeTitles = true
     }
 
     
