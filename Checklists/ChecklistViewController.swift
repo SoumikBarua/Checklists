@@ -19,7 +19,8 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
         // Load items
         loadChecklistItems()
         
-        //navigationController?.navigationBar.prefersLargeTitles = true
+        // this is no longer the root VC, so no more large navbar area
+        navigationItem.largeTitleDisplayMode = .never
     }
 
     

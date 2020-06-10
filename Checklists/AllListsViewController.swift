@@ -11,12 +11,16 @@ import UIKit
 class AllListsViewController: UITableViewController {
 
     let cellIdentifier = "ChecklistCell"
+    var lists = [Checklist]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Register a cell with this identifier for the table view
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        
+        // Since this is the root VC, set this to have the large titles
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 
     // MARK: - Table view data source methods
