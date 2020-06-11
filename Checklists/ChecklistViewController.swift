@@ -10,6 +10,7 @@ import UIKit
 
 class ChecklistViewController: UITableViewController, ItemDetailViewControllerDelegate {
     
+    var checklist: Checklist!
     var items = [ChecklistItem]()
         
     override func viewDidLoad() {
@@ -21,6 +22,8 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
         
         // this is no longer the root VC, so no more large navbar area
         navigationItem.largeTitleDisplayMode = .never
+        
+        title = checklist.name
     }
 
     
