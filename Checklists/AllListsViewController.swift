@@ -21,24 +21,42 @@ class AllListsViewController: UITableViewController {
         
         // Since this is the root VC, set this to have the large titles
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        // Add placeholder data
+        var list = Checklist(name: "Birthdays")
+        lists.append(list)
+        
+        list = Checklist(name: "Groceries")
+        lists.append(list)
+        
+        list = Checklist(name: "Cool apps")
+        lists.append(list)
+        
+        list = Checklist(name: "To do")
+        lists.append(list)
     }
 
     // MARK: - Table view data source methods
-
+    // Return the number of rows for the table
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return lists.count
     }
 
-    // MARK: - Table view delegate methods
+    // Provide a cell object for each row
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
 
         // Configure the cell...
-        cell.textLabel!.text =  "List \(indexPath.row)"
+        let checklist = lists[indexPath.row]
+        cell.textLabel!.text =  checklist.name
+        cell.accessoryType = .detailDisclosureButton
+        
         return cell
     }
     
+    // MARK: - Table view delegate methods
+    // Perform segue for individual Checklist whenever tapped
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "ShowChecklist", sender: nil)
     }
