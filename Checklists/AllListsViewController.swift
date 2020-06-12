@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AllListsViewController: UITableViewController {
+class AllListsViewController: UITableViewController, ListDetailViewControllerDelegate {
 
     let cellIdentifier = "ChecklistCell"
     var lists = [Checklist]()
@@ -55,11 +55,30 @@ class AllListsViewController: UITableViewController {
         return cell
     }
     
+    // Handles deletion of rows
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        lists.remove(at: indexPath.row)
+        
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+    }
+    
     // MARK: - Table view delegate methods
     // Perform segue for individual Checklist whenever tapped
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let checklist = lists[indexPath.row]
         performSegue(withIdentifier: "ShowChecklist", sender: checklist)
+    }
+    
+    // Handle loading ListDetailVC without segue
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        // Initialize the ListDetailVC
+        let controller = storyboard!.instantiateViewController(identifier: "ListDetailViewController") as! ListDetailViewController
+        controller.delegate = self
+        
+        let checklist = lists[indexPath.row]
+        controller.checklistToEdit = checklist
+        
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     // MARK: - Navigation
@@ -68,7 +87,35 @@ class AllListsViewController: UITableViewController {
         if segue.identifier == "ShowChecklist" {
             let controller = segue.destination as! ChecklistViewController
             controller.checklist = sender as? Checklist
+        } else if segue.identifier == "AddChecklist" {
+            let controller = segue.destination as! ListDetailViewController
+            controller.delegate = self
         }
+    }
+    
+    // MARK: - List detail view controller delegate methods
+    func listDetailViewControllerDidCancel(_ controller: ListDetailViewController) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func listDetailViewController(_ controller: ListDetailViewController, didFinishAdding checklist: Checklist) {
+        let newRowIndex = lists.count
+        lists.append(checklist)
+        
+        tableView.insertRows(at: [IndexPath(row: newRowIndex, section: 0)], with: .automatic)
+        
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func listDetailViewController(_ controller: ListDetailViewController, didFinishEditing checklist: Checklist) {
+        if let index = lists.firstIndex(of: checklist) {
+            let indexPath = IndexPath(row: index, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath) {
+                cell.textLabel!.text = checklist.name
+            }
+        }
+        
+        navigationController?.popViewController(animated: true)
     }
 
 
