@@ -8,10 +8,12 @@
 
 import UIKit
 
-class AllListsViewController: UITableViewController, ListDetailViewControllerDelegate {
+class AllListsViewController: UITableViewController, ListDetailViewControllerDelegate, UINavigationControllerDelegate {
 
     let cellIdentifier = "ChecklistCell"
     var dataModel: DataModel!
+    
+    // MARK: - View life cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +23,19 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         
         // Since this is the root VC, set this to have the large titles
         navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        navigationController?.delegate = self
+        
+        let index = UserDefaults.standard.integer(forKey: "ChecklistIndex")
+        
+        if index != -1 {
+            let checklist = dataModel.lists[index]
+            performSegue(withIdentifier: "ShowChecklist", sender: checklist)
+        }
     }
 
     // MARK: - Table view data source methods
@@ -52,6 +67,7 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     // MARK: - Table view delegate methods
     // Perform segue for individual Checklist whenever tapped
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        UserDefaults.standard.set(indexPath.row, forKey: "ChecklistIndex")
         let checklist = dataModel.lists[indexPath.row]
         performSegue(withIdentifier: "ShowChecklist", sender: checklist)
     }
@@ -105,6 +121,11 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         navigationController?.popViewController(animated: true)
     }
     
-    
+    // MARK: - Navigation controller delegate methods
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if viewController ===  self{
+            UserDefaults.standard.set(-1, forKey: "ChecklistIndex")
+        }
+    }
 
 }
