@@ -15,7 +15,8 @@ class DataModel {
             return UserDefaults.standard.integer(forKey: "ChecklistIndex")
         }
         set {
-            return UserDefaults.standard.set(newValue, forKey: "ChecklistIndex")
+            UserDefaults.standard.set(newValue, forKey: "ChecklistIndex")
+            UserDefaults.standard.synchronize()
         }
     }
     
