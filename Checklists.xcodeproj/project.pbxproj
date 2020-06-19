@@ -69,20 +69,44 @@
 			isa = PBXGroup;
 			children = (
 				3272E86B24834B4500E49CA3 /* AppDelegate.swift */,
-				3272E86D24834B4500E49CA3 /* SceneDelegate.swift */,
-				3272E86F24834B4500E49CA3 /* ChecklistViewController.swift */,
-				3272E87124834B4500E49CA3 /* Main.storyboard */,
-				3272E87424834B4600E49CA3 /* Assets.xcassets */,
-				3272E87624834B4600E49CA3 /* LaunchScreen.storyboard */,
+				32AA8626249C681500CCCD9E /* Data Models */,
 				3272E87924834B4600E49CA3 /* Info.plist */,
-				329D8EC124874D7C0031D3D1 /* ChecklistItem.swift */,
-				32D013C82488A9D3003D63B1 /* ItemDetailViewController.swift */,
-				3286164024908A3200794781 /* AllListsViewController.swift */,
-				32861642249090FA00794781 /* Checklist.swift */,
-				3278D9432491DECD004F01B3 /* ListDetailViewController.swift */,
-				3209BAD02495CE86001E671F /* DataModel.swift */,
+				32AA8628249C682F00CCCD9E /* Resources */,
+				3272E86D24834B4500E49CA3 /* SceneDelegate.swift */,
+				32AA8627249C682200CCCD9E /* View Controllers */,
 			);
 			path = Checklists;
+			sourceTree = "<group>";
+		};
+		32AA8626249C681500CCCD9E /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				32861642249090FA00794781 /* Checklist.swift */,
+				329D8EC124874D7C0031D3D1 /* ChecklistItem.swift */,
+				3209BAD02495CE86001E671F /* DataModel.swift */,
+			);
+			path = "Data Models";
+			sourceTree = "<group>";
+		};
+		32AA8627249C682200CCCD9E /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3286164024908A3200794781 /* AllListsViewController.swift */,
+				3272E86F24834B4500E49CA3 /* ChecklistViewController.swift */,
+				32D013C82488A9D3003D63B1 /* ItemDetailViewController.swift */,
+				3278D9432491DECD004F01B3 /* ListDetailViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		32AA8628249C682F00CCCD9E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3272E87424834B4600E49CA3 /* Assets.xcassets */,
+				3272E87624834B4600E49CA3 /* LaunchScreen.storyboard */,
+				3272E87124834B4500E49CA3 /* Main.storyboard */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
