@@ -18,8 +18,6 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Register a cell with this identifier for the table view
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         
         // Since this is the root VC, set this to have the large titles
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -47,12 +45,20 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
 
     // Provide a cell object for each row
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        let cell: UITableViewCell!
+        if let c = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) {
+            cell = c
+        } else {
+            cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellIdentifier)
+        }
 
         // Configure the cell...
         let checklist = dataModel.lists[indexPath.row]
         cell.textLabel!.text =  checklist.name
         cell.accessoryType = .detailDisclosureButton
+        
+        // Add the unchecked items count in the subtitle
+        cell.detailTextLabel!.text = "\(checklist.countUncheckedItems()) Remaining"
         
         return cell
     }
