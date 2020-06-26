@@ -66,6 +66,9 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         let uncheckedCount = checklist.countUncheckedItems()
         cell.detailTextLabel!.text = uncheckedCount == 0 ? "All Done" : "\(uncheckedCount) Remaining"
         
+        // Add icon
+        cell.imageView!.image = UIImage(named: checklist.iconName)
+        
         return cell
     }
     
