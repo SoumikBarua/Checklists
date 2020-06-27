@@ -15,6 +15,7 @@
 		3272E87524834B4600E49CA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3272E87424834B4600E49CA3 /* Assets.xcassets */; };
 		3272E87824834B4600E49CA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3272E87624834B4600E49CA3 /* LaunchScreen.storyboard */; };
 		3278D9442491DECD004F01B3 /* ListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3278D9432491DECD004F01B3 /* ListDetailViewController.swift */; };
+		327E4E8224A6F89500CC8BB6 /* IconPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327E4E8124A6F89500CC8BB6 /* IconPickerViewController.swift */; };
 		3286164124908A3200794781 /* AllListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3286164024908A3200794781 /* AllListsViewController.swift */; };
 		32861643249090FA00794781 /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32861642249090FA00794781 /* Checklist.swift */; };
 		329D8EC224874D7C0031D3D1 /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329D8EC124874D7C0031D3D1 /* ChecklistItem.swift */; };
@@ -32,6 +33,7 @@
 		3272E87724834B4600E49CA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3272E87924834B4600E49CA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3278D9432491DECD004F01B3 /* ListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailViewController.swift; sourceTree = "<group>"; };
+		327E4E8124A6F89500CC8BB6 /* IconPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPickerViewController.swift; sourceTree = "<group>"; };
 		3286164024908A3200794781 /* AllListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllListsViewController.swift; sourceTree = "<group>"; };
 		32861642249090FA00794781 /* Checklist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checklist.swift; sourceTree = "<group>"; };
 		329D8EC124874D7C0031D3D1 /* ChecklistItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 		32AA8627249C682200CCCD9E /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				327E4E8124A6F89500CC8BB6 /* IconPickerViewController.swift */,
 				3286164024908A3200794781 /* AllListsViewController.swift */,
 				3272E86F24834B4500E49CA3 /* ChecklistViewController.swift */,
 				32D013C82488A9D3003D63B1 /* ItemDetailViewController.swift */,
@@ -183,6 +186,7 @@
 				3272E87024834B4500E49CA3 /* ChecklistViewController.swift in Sources */,
 				32D013C92488A9D3003D63B1 /* ItemDetailViewController.swift in Sources */,
 				3286164124908A3200794781 /* AllListsViewController.swift in Sources */,
+				327E4E8224A6F89500CC8BB6 /* IconPickerViewController.swift in Sources */,
 				32861643249090FA00794781 /* Checklist.swift in Sources */,
 				3272E86C24834B4500E49CA3 /* AppDelegate.swift in Sources */,
 				3272E86E24834B4500E49CA3 /* SceneDelegate.swift in Sources */,
