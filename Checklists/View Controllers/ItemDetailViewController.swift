@@ -22,6 +22,8 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
     var itemToEdit: ChecklistItem?
+    @IBOutlet weak var shouldRemainSwitch: UISwitch!
+    @IBOutlet weak var dueDateLabel: UILabel!
     
     weak var delegate: ItemDetailViewControllerDelegate?
     
