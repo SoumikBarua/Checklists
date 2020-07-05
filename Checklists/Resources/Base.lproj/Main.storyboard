@@ -16,20 +16,20 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="ChecklistItem" id="6bi-va-xDt">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44.5"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6bi-va-xDt" id="5MT-Vn-ofR">
-                                    <rect key="frame" x="0.0" y="0.0" width="316" height="44.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="316" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gZn-R8-H8r">
-                                            <rect key="frame" x="32.5" y="11" width="42" height="22"/>
+                                            <rect key="frame" x="32.5" y="11" width="42" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="√" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m9Q-0q-yP3">
-                                            <rect key="frame" x="10" y="8.5" width="12.5" height="27.5"/>
+                                            <rect key="frame" x="10" y="8.5" width="12.5" height="27"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
                                             <color key="textColor" red="0.015686274510000001" green="0.66274509800000003" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -350,13 +350,34 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="datePicker" destination="siw-Xf-TBG" id="LIA-H9-EfN"/>
+                        <outlet property="datePickerCell" destination="URJ-5U-iZN" id="cqj-5j-Kay"/>
                         <outlet property="doneBarButton" destination="Ky7-MW-7Hm" id="npA-lr-XJT"/>
                         <outlet property="dueDateLabel" destination="Rfo-GY-WVN" id="kH1-2V-RNn"/>
-                        <outlet property="shouldRemainSwitch" destination="661-fH-pNV" id="o72-En-pNU"/>
+                        <outlet property="shouldRemindSwitch" destination="661-fH-pNV" id="ixJ-a5-iuB"/>
                         <outlet property="textField" destination="87J-vf-2tp" id="UBi-eA-Ci8"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0SQ-BI-zN5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="URJ-5U-iZN">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="217"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="URJ-5U-iZN" id="r4w-CP-lmo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="217"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="siw-Xf-TBG">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="217"/>
+                            </datePicker>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="siw-Xf-TBG" secondAttribute="trailing" id="DMG-0w-JfN"/>
+                            <constraint firstItem="siw-Xf-TBG" firstAttribute="top" secondItem="r4w-CP-lmo" secondAttribute="top" id="S3h-3A-K8x"/>
+                            <constraint firstItem="siw-Xf-TBG" firstAttribute="leading" secondItem="r4w-CP-lmo" secondAttribute="leading" id="UHq-HO-eQm"/>
+                            <constraint firstAttribute="bottom" secondItem="siw-Xf-TBG" secondAttribute="bottom" id="eIG-PS-e9Z"/>
+                        </constraints>
+                    </tableViewCellContentView>
+                </tableViewCell>
             </objects>
             <point key="canvasLocation" x="1612" y="143"/>
         </scene>
