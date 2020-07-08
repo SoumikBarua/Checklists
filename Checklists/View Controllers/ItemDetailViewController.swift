@@ -62,7 +62,11 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
     
     // MARK:- Table view delegate methods
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        return nil
+        if indexPath.section == 1 && indexPath.row == 1 {
+            return indexPath
+        } else {
+            return nil
+        }
     }
     
     // Height for the date picker
@@ -80,6 +84,16 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
         if indexPath.section == 1 && indexPath.row == 1 {
             showDatePicker()
         }
+    }
+    
+    // This needs to be overriden since the data source for this static table view is being messed with
+    // when adding the date picker cell
+    override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
+        var newIndexPath = indexPath
+        if indexPath.section == 1 && indexPath.row == 2 {
+            newIndexPath = IndexPath(row: 0, section: indexPath.section)
+        }
+        return super.tableView(tableView, indentationLevelForRowAt: newIndexPath)
     }
     
     // MARK: - Table view data source methods
@@ -127,6 +141,12 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
+    // This will update the whenever the date picker value has changed
+    @IBAction func dateChanged(_ datePicker: UIDatePicker) {
+        dueDate = datePicker.date
+        updateDueDateLabel()
+    }
+    
     // MARK:- Text field delegate methods
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let oldText = textField.text!
@@ -155,5 +175,6 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
         datePickerVisible = true
         let indexPathDatePicker = IndexPath(row: 2, section: 1)
         tableView.insertRows(at: [indexPathDatePicker], with: .fade)
+        datePicker.setDate(dueDate, animated: false)
     }
 }
