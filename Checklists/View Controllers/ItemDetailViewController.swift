@@ -82,7 +82,11 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         textField.resignFirstResponder()
         if indexPath.section == 1 && indexPath.row == 1 {
-            showDatePicker()
+            if !datePickerVisible {
+                showDatePicker()
+            } else {
+                hideDatePicker()
+            }
         }
     }
     
@@ -163,6 +167,11 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
         return true
     }
     
+    // Hide date picker when inside of the text field is tapped
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        hideDatePicker()
+    }
+    
     // MARK: - Helper methods
     func updateDueDateLabel() {
         let formatter = DateFormatter()
@@ -176,5 +185,17 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
         let indexPathDatePicker = IndexPath(row: 2, section: 1)
         tableView.insertRows(at: [indexPathDatePicker], with: .fade)
         datePicker.setDate(dueDate, animated: false)
+        dueDateLabel.textColor = dueDateLabel.tintColor
+    }
+    
+    // To hide date picker when the due date row is tapped again
+    func hideDatePicker() {
+        if datePickerVisible {
+            datePickerVisible = false
+            
+            let indexPathDatePicker = IndexPath(row: 2, section: 1)
+            tableView.deleteRows(at: [indexPathDatePicker], with: .fade)
+            dueDateLabel.textColor = UIColor.black
+        }
     }
 }
