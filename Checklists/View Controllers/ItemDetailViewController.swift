@@ -132,6 +132,7 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
             
             item.shouldRemind = shouldRemindSwitch.isOn
             item.dueDate = dueDate
+            item.scheduleNotification()
             
             delegate?.itemDetailViewController(self, didFinishEditing: item)
         } else {
@@ -140,6 +141,7 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
             
             item.shouldRemind = shouldRemindSwitch.isOn
             item.dueDate = dueDate
+            item.scheduleNotification()
         
             delegate?.itemDetailViewController(self, didFinishAdding: item)
         }
@@ -196,6 +198,17 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
             let indexPathDatePicker = IndexPath(row: 2, section: 1)
             tableView.deleteRows(at: [indexPathDatePicker], with: .fade)
             dueDateLabel.textColor = UIColor.black
+        }
+    }
+    
+    @IBAction func shouldRemindToggled(_ switchControl: UISwitch) {
+        textField.resignFirstResponder()
+        
+        if switchControl.isOn {
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.alert, .sound]) {
+                granted, error in
+            }
         }
     }
 }
