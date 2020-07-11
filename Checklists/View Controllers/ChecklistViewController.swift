@@ -78,7 +78,7 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
     // This sets a ChecklistItem's text on its cell label
     func configureText(for cell: UITableViewCell, with item: ChecklistItem) {
         let label = cell.viewWithTag(1000) as! UILabel
-        label.text = "\(item.itemID): \(item.text)"
+        label.text = item.text
     }
     
     

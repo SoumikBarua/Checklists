@@ -27,11 +27,18 @@ class ChecklistItem: NSObject, Codable {
         itemID = DataModel.nextChecklistItemID()
     }
     
+    // Called when a checklist item is either deleted by a swipe or when the checklist it's a part of is deleted
+    deinit {
+        removeNotification()
+    }
+    
     func toggleChecked() {
         checked.toggle()
     }
     
+    // Create notifications if the reminder toggle is on and the due date is in the future
     func scheduleNotification() {
+        removeNotification() // for new notifications, delete any existing notifications
         if shouldRemind && dueDate > Date() {
             let content = UNMutableNotificationContent()
             content.title = "Reminder:"
@@ -52,4 +59,11 @@ class ChecklistItem: NSObject, Codable {
             
         }
     }
+    
+    // Cancel the reminder notification if the toggle is switched off
+    func removeNotification() {
+        let center = UNUserNotificationCenter.current()
+        center.removePendingNotificationRequests(withIdentifiers: ["\(itemID)"])
+    }
+    
 }
