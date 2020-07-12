@@ -1,8 +1,10 @@
 # Checklists
 
-Checklists is a simple iOS app.
+Checklists is a simple iOS app. The app acts as a typical to-do list with reminders.
 
 ## Getting Started
+
+This app uses UserNotifications, UIDatePicker with multiple UITableViewControllers embedded in a UINavigationController. The app also implements data persistence using the Codable protocol and storing a .plist file in the app's sandbox.
 
 ## App Walkthrough GIF
 
